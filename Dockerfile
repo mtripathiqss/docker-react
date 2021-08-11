@@ -9,6 +9,7 @@ COPY . .
 RUN npm run build
  
 FROM nginx
-
+# expose port 80 for aws elastic beanstalk
+#EXPOSE 80
 # For AWS, use --from=0 instead of --from=builder
 COPY --from=builder /app/build /usr/share/nginx/html

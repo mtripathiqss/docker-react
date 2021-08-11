@@ -7,3 +7,26 @@ before_install:
 
 script:
   - docker run -e CI=true travis_test npm run test -- --coverage
+
+# use following configurations for elastic aws beanstalk
+#deploy:
+#  provider: elasticbeanstalk
+#  region: "us-west-2"
+#  app: "docker-react"
+#  env: "Docker-env"
+#  bucket_name: "your_bucket_name"
+#  bucket_path: "docker-react"
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key:
+#    secure: "$AWS_SECRET_KEY"
+
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "$HEROKU_API_KEY"
+  app: "mtripathi-docker-react"
+  on:
+    branch: master
