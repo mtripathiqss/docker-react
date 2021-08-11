@@ -1,32 +1,14 @@
 language: generic
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build -t travis_test -f Dockerfile.dev .
-
+- docker build -t travis_test -f Dockerfile.dev .
 script:
-  - docker run -e CI=true travis_test npm run test -- --coverage
-
-# use following configurations for elastic aws beanstalk
-#deploy:
-#  provider: elasticbeanstalk
-#  region: "us-west-2"
-#  app: "docker-react"
-#  env: "Docker-env"
-#  bucket_name: "your_bucket_name"
-#  bucket_path: "docker-react"
-#  on:
-#    branch: master
-#  access_key_id: $AWS_ACCESS_KEY
-#  secret_access_key:
-#    secure: "$AWS_SECRET_KEY"
-
-
+- docker run -e CI=true travis_test npm run test -- --coverage
 deploy:
   provider: heroku
-  api_key:
-    secure: $HEROKU_API_KEY
-  app: "mtripathi-docker-react"
+  app: mtripathi-docker-react
   on:
     branch: master
+  api_key:
+    secure: RpalKsPfi15s1Or3G54nPirwMN4IrdYX5xuytIb2oY++An014D3WPamsgyePnU48AqRhgXFeSCgjJalGUuR+EPyqqHXbXxmcCHDpAjMHg8UZbS9cQ3aS5pAUo1JZrL6EIuBJWnlY8bE9oXINcmlaP7pkSQjlvjvLfarfPNuxiyYlJFLMFmcaiLp7TvIGTqXPldONoFTE4RgtIH+XzMuuvd9XDXT4D8dm2V6aBQ39Sy90n5lkyTMFfx/7HrmbxnNFo7VFktqi4JlMakpDwdPmJa/H6WIzlGvVeiZ6cobW0s6GELW0FPLOo2Pe174v554T37pUwEMVnUsFkxpR/WJBvUGx7OjhNz/hLb22nvn/+fNXpr3D/4edayEUW1u4xDCmZdf2s08Bdt8mJhoEOXTmX6QLM9yCxRzg5YqKh6EECIlYLsgD6BjOmWqupPjJwg0XrSGvMzchaCDfkbq71pA9iy97DLHEzXjz+m3rJ6ncbsOYy3O6YZs6Om7SDRD0yGlqElFyRWahQYG3r87Aourbhil/J+eUQYG0JkVSVvQeGG6nUS0xjO6dAXvqsgCb4hANbOQFgmsvPFB9vzqldqyYr6Kf6qdhURmRMTN8N0r30grxKle69kbLqyLfDiWfGPiPrG95g84glvLcgFkDwbArE1wzejl2FYaN20AWCcHRR2E=
